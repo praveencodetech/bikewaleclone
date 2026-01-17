@@ -91,11 +91,21 @@ function renderBikes(bikes) {
         return;
     }
 
+    // Determine backend base URL (strip /api)
+    const backendUrl = API_BASE_URL.replace('/api', '');
+
     bikes.forEach(bike => {
         const card = document.createElement('div');
         card.className = 'bike-card';
+
+        // Handle image URL (if it's relative, prepend backend URL)
+        let imgPath = bike.imageUrl || 'https://via.placeholder.com/300';
+        if (imgPath.startsWith('/')) {
+            imgPath = backendUrl + imgPath;
+        }
+
         card.innerHTML = `
-            <img src="${bike.imageUrl || 'https://via.placeholder.com/300'}" alt="${bike.name}" class="bike-image">
+            <img src="${imgPath}" alt="${bike.name}" class="bike-image">
             <div class="bike-info">
                 <div class="bike-name">${bike.name}</div>
                 <div class="bike-price">₹ ${(bike.priceMin / 100000).toFixed(2)} - ${(bike.priceMax / 100000).toFixed(2)} Lakh</div>
@@ -111,6 +121,7 @@ async function fetchBikeDetails(id) {
         const response = await fetch(`${API_BASE_URL}/bikes/${id}`);
         if (!response.ok) throw new Error('Bike not found');
         const bike = await response.json();
+        const backendUrl = API_BASE_URL.replace('/api', '');
 
         const bikeNameEl = document.getElementById('bikeName');
         const bikeImageEl = document.getElementById('bikeImage');
@@ -119,7 +130,11 @@ async function fetchBikeDetails(id) {
 
         if (bikeNameEl) bikeNameEl.textContent = bike.name;
         if (bikeImageEl) {
-            bikeImageEl.src = bike.imageUrl || 'https://via.placeholder.com/600';
+            let imgPath = bike.imageUrl || 'https://via.placeholder.com/600';
+            if (imgPath.startsWith('/')) {
+                imgPath = backendUrl + imgPath;
+            }
+            bikeImageEl.src = imgPath;
             bikeImageEl.onerror = function () {
                 this.src = 'https://via.placeholder.com/600?text=No+Image';
             };
