@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bike Details - BikeWale Clone</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .details-container {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .details-image {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .details-image img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+
+        .details-info {
+            flex: 1;
+            min-width: 300px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <nav>
+            <a href="index.html" class="logo"><i class="fas fa-motorcycle"></i> BikeWale Clone</a>
+            <a href="index.html" class="btn">Back to Home</a>
+        </nav>
+    </header>
+
+    <div class="container" id="bikeDetails">
+        <h1 class="section-title" id="bikeName">Loading...</h1>
+
+        <div class="details-container">
+            <div class="details-image">
+                <img id="bikeImage" src="" alt="Bike Image">
+            </div>
+            <div class="details-info">
+                <h2 class="bike-price" id="bikePrice"></h2>
+                <p id="bikeDesc"></p>
+                <br>
+                <h3>Specifications</h3>
+                <ul id="specsList">
+                    <!-- Specs to be populated via JS if backend provides them -->
+                </ul>
+                <br>
+                <button class="btn" style="background: var(--primary-color); color: white;">Get On-Road Price</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
