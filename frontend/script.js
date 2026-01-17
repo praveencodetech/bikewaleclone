@@ -1,6 +1,6 @@
 const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
     ? 'http://localhost:8081/api'
-    : 'https://bikewaleclone-backend.onrender.com/api'; // We will update this later with your actual Render URL
+    : 'https://bikewaleclone.onrender.com/api';
 
 
 document.addEventListener('DOMContentLoaded', () => {
